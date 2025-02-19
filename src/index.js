@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import Home from './Pages/Home';
+import SingleRecipe from './Pages/SingleRecipe';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -12,6 +13,7 @@ root.render(
     <Router>
       <Routes>
         <Route path='/' element={<Home/>} />
+        <Route path='/recipe/:id'element={<SingleRecipe />} />
       </Routes>
     </Router>
     {/* <App /> */}
