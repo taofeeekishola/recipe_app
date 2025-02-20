@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import Recipies from '../components/atoms/Recipies'
 import Loader from '../components/atoms/Loader'
-// API_KEY = process.env.REACT_APP_API_KE/Y
+
 
 const Home = () => {
     const [meals, setMeals] = useState([])

@@ -23,7 +23,7 @@ const FoodDetails = ({meals}) => {
                 </ul>
             </div>
              <div className='shadow-md rounded-lg p-2 m-8 font-semibold'>
-                <h1 className='text-lg font-bold mb-2'>Ingredients</h1>
+                <h1 className='text-lg font-bold mb-2'>Instructions</h1>
                 <ol className="list-decimal list-inside space-y-1">
                      {meals?.instructions?.map((instruction,index)=>{
                         return(
