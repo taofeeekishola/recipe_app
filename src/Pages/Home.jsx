@@ -7,14 +7,18 @@ import Loader from '../components/atoms/Loader'
 const Home = () => {
     const [meals, setMeals] = useState([])
     const [loading, setLoading] = useState(false)
+    const [search, setSearch] = useState('')
+    const [query, setQuery] = useState('')
 
     const getMeal = async() =>{
       setLoading(true)
         try{
-            const resp = await axios.get(`https://dummyjson.com/recipes`)
-            console.log(resp.data.recipes)
-            setLoading(false)
+            const resp = await axios.get(`https://dummyjson.com/recipes/${
+              search === '' ? '' : `search?q=${query}`
+            }`);
+        
             setMeals(resp.data.recipes)
+            setLoading(false)
         }catch(error){
             console.log(error)
         }
@@ -22,14 +26,19 @@ const Home = () => {
 
     useEffect(()=>{
        getMeal()
-    },[])
+    },[query])
     
   return (
     <div>
       <div className='flex justify-center mt-10'>
         <h1 className='text-xl'>Search for a meal</h1>
-        <form action="">
-          <input className='border-solid border-2 border-sky-500' type='text'></input>
+        <form action="" onSubmit={(e)=>{
+          e.preventDefault();
+          setQuery(search)
+        }}>
+          <input className='border-solid border-2 border-sky-500' type='text' value={search} onChange={(e)=>{
+            setSearch(e.target.value)
+          }}></input>
           <button type='submit' className='rounded-full bg-sky-500/50 border-solid border-2 border-sky-500 w-20' >Search</button>
         </form>
       </div>
