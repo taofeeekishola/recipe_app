@@ -7,8 +7,8 @@ import Loader from '../components/atoms/Loader'
 const Home = () => {
     const [meals, setMeals] = useState([])
     const [loading, setLoading] = useState(false)
-    const [search, setSearch] = useState('')
-    const [query, setQuery] = useState('')
+    const [search, setSearch] = useState('') //this takes the value from the input and stores it
+    const [query, setQuery] = useState('') //this takes the finally from the search 
 
     const getMeal = async() =>{
       setLoading(true)
@@ -18,9 +18,11 @@ const Home = () => {
             }`);
         
             setMeals(resp.data.recipes)
-            setLoading(false)
+          
         }catch(error){
             console.log(error)
+        }finally{
+            setLoading(false)
         }
     }
 
@@ -42,11 +44,15 @@ const Home = () => {
           <button type='submit' className='rounded-full bg-sky-500/50 border-solid border-2 border-sky-500 w-20' >Search</button>
         </form>
       </div>
-      {loading ? 
-        <Loader/>
+   
+      { loading ? 
+       ( <Loader/>)
       :
-        <Recipies meals={meals} />
+        meals.length === 0 ? (<p className="text-center text-red-500 mt-4">Meal not found...</p>)
+      :
+        (<Recipies meals={meals} />)
       } 
+
     </div>
   )
 }

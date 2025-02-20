@@ -15,9 +15,11 @@ const SingleRecipe = () => {
             
             const resp = await axios.get(`https://dummyjson.com/recipes/${id}`)
             setMeals(resp.data)
-            setLoading(false)
+           
         }catch(error){
             console.log(error)
+        }finally{
+             setLoading(false)
         }
     }
 
